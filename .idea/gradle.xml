@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app/clock" />
+            <option value="$PROJECT_DIR$/app/unitconverter" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
