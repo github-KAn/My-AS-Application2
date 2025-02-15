@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Expensify</string>
-    <string name="ngay">Ngày</string>
+    <string name="ngay">Date</string>
 </resources>
