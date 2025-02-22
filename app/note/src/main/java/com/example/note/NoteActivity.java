@@ -1,6 +1,7 @@
 package com.example.note;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +9,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class NoteActivity extends AppCompatActivity {
 
@@ -23,13 +27,19 @@ public class NoteActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        String fileContents = "Nội dung trong file thuộc thư mục của ứng dụng";
         try {
-            FileOutputStream fos = openFileOutput("data.txt", MODE_PRIVATE);
-            fos.write(fileContents.getBytes());
-            fos.close();
+            FileInputStream fis = openFileInput("data.txt");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader bufferedReader = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+            fis.close();
+            Toast.makeText(this, sb, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
